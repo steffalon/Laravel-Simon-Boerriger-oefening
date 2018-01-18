@@ -23,9 +23,7 @@
 //     return view('login');
 // });
 
-Route::get('login', array('uses' => 'HomeController@showLogin'));
-Route::post('login', array('uses' => 'HomeController@doLogin'));
-Route::get('logout', array('uses' => 'HomeController@doLogout'));
+// Route::get('logout', array('as' => 'logout', 'uses' => 'HomeController@doLogout'));
 
 Route::get('{page?}', function($page = null)
 {
@@ -36,11 +34,11 @@ Route::get('{page?}', function($page = null)
         case "login":
             return view('login');
             break;
-        case "login2":
-            return view('auth.login');
-            break;
         default:
             return abort(404);
             break;
     }
 });
+Route::auth();
+Route::get('login', array('as' => 'login', 'uses' => 'HomeController@showLogin'));
+Route::post('login', array('as' => 'login', 'uses' => 'HomeController@doLogin'));

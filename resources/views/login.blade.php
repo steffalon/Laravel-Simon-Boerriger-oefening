@@ -19,15 +19,16 @@
         <main class="content__main">
             <section class="content__main__form">
                 {{ Form::open(array('url' => 'login')) }}
-                {{ $errors->first('username') }}
+                {{ $errors->first('email') }}
                 {{ $errors->first('password') }}
                 <br>
-                {{ Form::label('username', 'Username:') }}
-                {{ Form::text('username', '', array('placeholder' => 'Username', 'autofocus')) }}
+                {{ Form::label('email', 'Email:') }}
+                {{ Form::text('email', '', array('placeholder' => 'Email', 'autofocus')) }}
                 <br>
                 {{ Form::label('password', 'Password:') }}
                 {{ Form::password('password', array('placeholder' => 'password')) }}
                 <br>
+                <?php if (isset($_GET['failed'])) echo "<p style='color: red; font-size: 1.2em'>Login failed</p>"; ?>
                 <br>
                 {{ Form::submit('Login') }}
                 {{ Form::close() }}
